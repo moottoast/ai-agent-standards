@@ -1,0 +1,29 @@
+# macOS artifacts
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor settings
+.idea/
+.vscode/
+*~
+*.swp
+
+# Bundler / Ruby
+.bundle/
+vendor/bundle/
+log/
+tmp/
+coverage/
+.rspec_status
+.byebug_history
+
+# Node / JS tooling (occasionally used by Cursor rules)
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Cursor caches
+.cursor/
