@@ -16,5 +16,6 @@ globs: ["app/views/**/*.html.erb", "lib/jumpstart/app/views/**/*.html.erb"]
 - Use `content_for :title` for page titles if that is the established convention.
 - Prefer partials for repeated UI patterns; follow existing component/partial naming.
 - Use Turbo Streams and `dom_id` as appropriate, matching existing patterns.
+- Keep business logic out of templates; use helpers or view components/presenters if already used in this repo.
 - Maintain accessibility: labels, aria attributes, focus states.
 - Add tests first when behavior changes: use system/request specs as appropriate (per AGENTS.md).

@@ -16,7 +16,8 @@ globs: ["app/controllers/**/*.rb"]
 - Use `before_action` for common setup and keep actions small.
 - Use `respond_to` only when formats are actually needed by the feature.
 - Follow repo conventions for pagination/sorting (e.g., Pagy) when present.
-- Use `status: :see_other` after DELETE redirects and `status: :unprocessable_content` for failed creates/updates if those are repo conventions.
-- Use `params.expect(...)` and permitted param structures as established in this codebase.
+- For non-GET redirects (e.g., after DELETE), prefer `status: :see_other` when the repo uses it; otherwise follow existing patterns.
+- Use `status: :unprocessable_entity` for failed creates/updates unless this repo uses a different status convention.
+- Use strong params (`params.require(...).permit(...)`) and follow any established patterns (e.g., `params.expect(...)`) in this codebase.
 - Handle `ActiveRecord::RecordNotFound` in the repo’s existing way (rescue + 404/redirect).
 - Add tests first (per AGENTS.md): prefer request specs for controller behavior.
