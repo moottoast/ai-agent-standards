@@ -109,3 +109,9 @@ When you propose or implement changes, your response must include:
 3) Commands to verify:
    - `bundle exec rspec`
    - and, when relevant: `bundle exec bundler-audit check --update` and `bundle exec brakeman`
+
+## Pre-PR hygiene
+Before creating or requesting a pull request:
+- Run the repo lint + security script: `bin/lint`
+- Ensure it passes (it will auto-fix what it can)
+- Call out any failures and required follow-ups
