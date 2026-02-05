@@ -36,6 +36,19 @@ Suggested commands (adjust paths/options to repo conventions):
 - If the prompt is not explicit, ask clarifying questions before proceeding.
 - When there are meaningful design choices, provide **2 options with tradeoffs**.
 
+### Branch hygiene at conversation start
+- On the first assistant response in a new conversation, check git context before editing files:
+  - `git rev-parse --abbrev-ref HEAD`
+  - `git status --porcelain --untracked-files=normal`
+- Ask before coding: "Do you want to create/switch to a new branch for this task to avoid mixing changes?"
+- Default recommendation: create a new branch unless the user explicitly wants to continue on the current branch.
+- If uncommitted changes exist, explain that they will follow into a new branch and offer clear options:
+  1) commit current changes first,
+  2) stash current changes first, or
+  3) continue intentionally on the current branch.
+- If the user declines a new branch, proceed and explicitly acknowledge that choice.
+- If helpful, suggest a stronger isolation workflow: `git worktree add ../<repo>-<task> -b codex/<task-slug>` so each task runs in a separate working directory.
+
 ### Explain decisions and code like a human
 For non-trivial work, include:
 - **Summary** (what changed)
