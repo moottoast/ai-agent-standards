@@ -1,9 +1,9 @@
 ---
-description: Apply Tailwind CSS v4 guidance when editing styling across the app
-globs: ["**/*.{js,css,erb,rb}"]
+description: Apply Tailwind CSS guidance when editing styling across the app
+globs: ["app/assets/stylesheets/**/*.css", "app/views/**/*.erb", "app/components/**/*.{erb,rb}", "app/javascript/**/*.{js,ts}"]
 ---
 
-# Tailwind CSS v4 (Scoped Notes)
+# Tailwind CSS (Scoped Notes)
 
 ## Context
 
@@ -11,8 +11,9 @@ globs: ["**/*.{js,css,erb,rb}"]
 
 ## Requirements
 
-- Prefer Tailwind v4's CSS-first configuration (`@theme`) over a JavaScript-first config unless the repo still uses `@config` to import one.
-- Use `@import "tailwindcss";` rather than `@tailwind base/components/utilities` when following v4 conventions.
+- Follow the repo’s existing Tailwind major version; do not migrate versions opportunistically.
+- If the repo uses Tailwind v4, prefer CSS-first configuration (`@theme`) and `@import "tailwindcss";`.
+- If the repo uses Tailwind v3, keep `@tailwind base/components/utilities` and existing config structure.
 - Follow the repo’s existing PostCSS/Vite integration rather than changing build tooling opportunistically.
 - Keep UI consistent with existing component patterns and dark mode usage.
 

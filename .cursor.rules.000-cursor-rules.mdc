@@ -1,13 +1,13 @@
 ---
 description: Maintain Cursor rules: keep them scoped, minimal, and aligned with AGENTS.md
-globs: [".cursor/rules/*.mdc"]
+globs: [".cursor.rules.*.mdc", ".cursor/rules/*.mdc"]
 ---
 
 # Cursor Rule Maintenance (Meta)
 
 ## Context
 
-- Applies only when creating or updating Cursor rule files in `.cursor/rules/*.mdc`.
+- Applies only when creating or updating Cursor rule files in `.cursor.rules.*.mdc` or `.cursor/rules/*.mdc`.
 - AGENTS.md is the canonical, cross-agent source of truth for behavior and global standards.
 
 ## Requirements
