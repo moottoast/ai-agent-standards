@@ -1,0 +1,38 @@
+---
+description: Apply Tailwind CSS v4 guidance when editing styling across the app
+globs: ["**/*.{js,css,erb,rb}"]
+---
+
+# Tailwind CSS v4 (Scoped Notes)
+
+## Context
+
+- When working on Tailwind styling in this repo.
+
+## Requirements
+
+- Prefer Tailwind v4's CSS-first configuration (`@theme`) over a JavaScript-first config unless the repo still uses `@config` to import one.
+- Use `@import "tailwindcss";` rather than `@tailwind base/components/utilities` when following v4 conventions.
+- Follow the repo’s existing PostCSS/Vite integration rather than changing build tooling opportunistically.
+- Keep UI consistent with existing component patterns and dark mode usage.
+
+## Examples
+
+<example>
+```css
+@import "tailwindcss";
+
+@theme {
+  --spacing: 0.25rem;
+  --radius-lg: 0.75rem;
+}
+```
+</example>
+
+<example type="invalid">
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities; /* v4 projects generally use @import "tailwindcss" */
+```
+</example>

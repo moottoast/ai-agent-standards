@@ -1,0 +1,20 @@
+---
+description: Apply view conventions for ERB + Tailwind; scoped to view templates
+globs: ["app/views/**/*.html.erb", "lib/jumpstart/app/views/**/*.html.erb"]
+---
+
+# Rails Views + Tailwind Standards (Scoped)
+
+## Context
+
+- When editing ERB templates in this repo.
+
+## Requirements
+
+- Use Tailwind utility classes per existing view/component conventions.
+- Ensure responsive layouts and dark mode support where the design system already uses it.
+- Use `content_for :title` for page titles if that is the established convention.
+- Prefer partials for repeated UI patterns; follow existing component/partial naming.
+- Use Turbo Streams and `dom_id` as appropriate, matching existing patterns.
+- Maintain accessibility: labels, aria attributes, focus states.
+- Add tests first when behavior changes: use system/request specs as appropriate (per AGENTS.md).

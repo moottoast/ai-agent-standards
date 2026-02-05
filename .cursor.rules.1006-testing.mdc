@@ -1,0 +1,57 @@
+---
+description: Apply RSpec + FactoryBot test-first standards for specs
+globs: ["spec/**/*.rb"]
+---
+
+# Testing Standards (RSpec + FactoryBot, Test-First)
+
+## Context
+
+- When creating or modifying specs.
+- Defer to AGENTS.md for the non-negotiables (tests first, RSpec only, FactoryBot only, no fixtures).
+
+## Requirements
+
+- Write/adjust the spec first (Red), then implement (Green), then refactor (Refactor).
+- Use FactoryBot factories and traits; avoid fixtures entirely.
+- Prefer behavior-focused specs; avoid testing Rails internals.
+- Keep setup readable; use `let`/`before` sparingly and intentionally.
+- Mock/stub at boundaries only (external services, time, randomness).
+- For Turbo confirmation flows or PATCH/DELETE links, use system specs with `:js` and the repo’s existing Turbo confirm helpers.
+- Include a verification section in responses: `bundle exec rspec` and, when relevant, `bundle exec bundler-audit check --update` + `bundle exec brakeman`.
+
+## Examples
+
+<example>
+```ruby
+require "rails_helper"
+
+RSpec.describe InvoiceTotalCalculator, type: :service do
+  it "returns the summed total in cents" do
+    invoice_record = create(:invoice, :with_line_items, line_item_count: 2, line_item_amount_cents: 1500)
+
+    expect(described_class.new(invoice_record: invoice_record).call).to eq(3000)
+  end
+end
+```
+</example>
+
+<example type="invalid">
+```ruby
+require "rails_helper"
+
+RSpec.describe User do
+  let(:user) { users(:one) } # fixtures are not allowed
+
+  it "works" do
+    expect(user).to be_present
+  end
+end
+```
+</example>
+
+## Anti-Patterns
+
+- Introducing or expanding Minitest usage for new tests.
+- Using fixtures or referencing `users(:one)` / YAML fixture data.
+- Large, brittle specs that over-mock internal behavior.

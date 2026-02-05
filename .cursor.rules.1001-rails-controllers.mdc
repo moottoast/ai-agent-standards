@@ -1,0 +1,22 @@
+---
+description: Apply controller-specific patterns for Rails controllers
+globs: ["app/controllers/**/*.rb"]
+---
+
+# Rails Controller Standards (Scoped)
+
+## Context
+
+- When creating or modifying Rails controllers.
+- Controllers should stay thin; orchestration only.
+
+## Requirements
+
+- Follow RESTful conventions and resource-based naming.
+- Use `before_action` for common setup and keep actions small.
+- Use `respond_to` only when formats are actually needed by the feature.
+- Follow repo conventions for pagination/sorting (e.g., Pagy) when present.
+- Use `status: :see_other` after DELETE redirects and `status: :unprocessable_content` for failed creates/updates if those are repo conventions.
+- Use `params.expect(...)` and permitted param structures as established in this codebase.
+- Handle `ActiveRecord::RecordNotFound` in the repo’s existing way (rescue + 404/redirect).
+- Add tests first (per AGENTS.md): prefer request specs for controller behavior.

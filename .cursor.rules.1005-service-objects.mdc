@@ -1,0 +1,19 @@
+---
+description: Apply service object conventions for app/services
+globs: ["app/services/**/*.rb"]
+---
+
+# Service Object Standards (Scoped)
+
+## Context
+
+- When creating or modifying service objects in `app/services`.
+
+## Requirements
+
+- Follow the repo’s naming convention for services (typically VerbNounService).
+- Keep services single-responsibility with explicit inputs/outputs.
+- Prefer an instance `#call`/`#run` method as established in this repo.
+- Handle errors explicitly (exceptions or a result object) consistent with existing services.
+- Avoid hidden side effects; write services that are straightforward to test.
+- Add tests first (per AGENTS.md): service specs should cover happy path + edge cases.

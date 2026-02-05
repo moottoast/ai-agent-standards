@@ -1,0 +1,19 @@
+---
+description: Apply Stimulus controller conventions for app/javascript
+globs: ["app/javascript/**/*.js"]
+---
+
+# JavaScript + Stimulus Standards (Scoped)
+
+## Context
+
+- When creating or modifying Stimulus controllers or JS in `app/javascript`.
+
+## Requirements
+
+- Use modern ES modules and Stimulus conventions (controllers, targets, values).
+- Keep actions single-responsibility and avoid unnecessary DOM surgery; prefer class toggles.
+- Document controller purpose and example markup at the top of the file.
+- Clean up resources in `disconnect()`.
+- If the repo uses tailwindcss-stimulus-components, prefer those components over custom implementations.
+- Add tests first where feasible; for JS-heavy flows, prefer system specs with `:js` (per AGENTS.md).

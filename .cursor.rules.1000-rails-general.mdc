@@ -1,0 +1,19 @@
+---
+description: Apply Rails conventions for Ruby files; defer to AGENTS.md for global standards
+globs: ["**/*.rb", "app/**/*.erb"]
+---
+
+# General Rails Conventions (Scoped)
+
+## Context
+
+- When working in a Ruby on Rails codebase.
+- Defer to AGENTS.md for global behavior (test-first, RSpec/FactoryBot, verbose naming, dependency policy, security checks).
+
+## Requirements
+
+- Prefer Rails conventions over custom patterns unless the repo already uses a specific abstraction.
+- Keep changes incremental and consistent with nearby code.
+- Place complex workflow logic in the repo’s established pattern (often service objects / POROs) rather than bloating controllers/models.
+- Use ActiveJob for background jobs; follow existing job argument conventions in this repo (IDs vs GlobalID) rather than changing styles.
+- If you touch request/params/auth flows or dependencies, include verification steps for bundler-audit and brakeman (per AGENTS.md).

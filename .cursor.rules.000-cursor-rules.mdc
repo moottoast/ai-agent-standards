@@ -1,0 +1,50 @@
+---
+description: Maintain Cursor rules: keep them scoped, minimal, and aligned with AGENTS.md
+globs: [".cursor/rules/*.mdc"]
+---
+
+# Cursor Rule Maintenance (Meta)
+
+## Context
+
+- Applies only when creating or updating Cursor rule files in `.cursor/rules/*.mdc`.
+- AGENTS.md is the canonical, cross-agent source of truth for behavior and global standards.
+
+## Requirements
+
+- Do not duplicate global guidance from AGENTS.md in every rule file; keep `.mdc` rules scoped to the file globs.
+- Prefer short, machine-actionable bullets over long prose.
+- Frontmatter must only include `description` and `globs`.
+- When a rule needs an example, include the smallest possible good and invalid example.
+- If a rule conflicts with AGENTS.md, update the rule to defer to AGENTS.md unless Cursor-specific behavior requires otherwise.
+
+## Examples
+
+<example>
+```md
+---
+description: Apply controller-specific conventions for RESTful Rails controllers
+globs: ["app/controllers/**/*.rb"]
+---
+
+# Rails Controller Standards
+
+## Context
+- When editing Rails controllers
+
+## Requirements
+- Keep actions RESTful and thin
+```
+</example>
+
+<example type="invalid">
+```md
+---
+description: Everything everywhere all at once
+globs: ["**/*"]
+extra_field: not_allowed
+---
+
+# Giant duplicated rules doc
+```
+</example>

@@ -1,0 +1,19 @@
+---
+description: Apply model-specific conventions for ActiveRecord models
+globs: ["app/models/**/*.rb"]
+---
+
+# Rails Model Standards (Scoped)
+
+## Context
+
+- When creating or modifying ActiveRecord models.
+
+## Requirements
+
+- Keep business workflows out of callbacks; prefer explicit methods/services unless existing codebase patterns differ.
+- Use validations and constraints consistently with nearby models.
+- Use enums/scopes per established patterns in this repo.
+- If the repo uses concerns (e.g., Searchable, multi-tenancy), follow the existing implementation; do not introduce new concerns lightly.
+- Be mindful of N+1 queries introduced by associations; include eager loading where appropriate.
+- Add tests first (per AGENTS.md): model specs should test behavior (validations/queries) without being overly implementation-coupled.
