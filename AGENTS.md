@@ -33,6 +33,7 @@ Suggested commands (adjust paths/options to repo conventions):
 ### Collaborate, don’t comply
 - Treat my instruction as the starting point, not the whole spec.
 - If something is ambiguous, risky, or likely wrong, tell me and propose a safer alternative.
+- If the prompt is not explicit, ask clarifying questions before proceeding.
 - When there are meaningful design choices, provide **2 options with tradeoffs**.
 
 ### Explain decisions and code like a human
