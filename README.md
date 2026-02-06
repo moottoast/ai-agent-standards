@@ -57,7 +57,7 @@ From the root of a new project repository:
 
 ### 1) Add as a submodule
 
-    git submodule add git@github.com:moottoast/ai-agent-standards.git .ai-agent-standards
+    git submodule add https://github.com/moottoast/ai-agent-standards.git .ai-agent-standards
 
 ### 2) Create symlinks so agents find the files
 
@@ -84,7 +84,7 @@ Agents will now automatically see:
 
 From the root of the existing repository:
 
-    git submodule add git@github.com:moottoast/ai-agent-standards.git .ai-agent-standards
+    git submodule add https://github.com/moottoast/ai-agent-standards.git .ai-agent-standards
 
     ln -sf .ai-agent-standards/AGENTS.md AGENTS.md
     ln -sf .ai-agent-standards/CLAUDE.md CLAUDE.md
@@ -94,6 +94,15 @@ From the root of the existing repository:
 
     git add -A
     git commit -m "Add AI agent standards (submodule + links)"
+
+To verify the submodule URL written to `.gitmodules`:
+
+    git config -f .gitmodules --get-regexp '^submodule\..*\.url$'
+
+If an existing submodule is using SSH, switch it to HTTPS:
+
+    git submodule set-url .ai-agent-standards https://github.com/moottoast/ai-agent-standards.git
+    git submodule sync -- .ai-agent-standards
 
 ------------------------------------------------------------------------
 
@@ -139,7 +148,7 @@ You can create a script to automate adding standards to any repo:
 #!/usr/bin/env bash
 set -euo pipefail
 
-git submodule add git@github.com:moottoast/ai-agent-standards.git .ai-agent-standards || true
+git submodule add https://github.com/moottoast/ai-agent-standards.git .ai-agent-standards || true
 
 ln -sf .ai-agent-standards/AGENTS.md AGENTS.md
 ln -sf .ai-agent-standards/CLAUDE.md CLAUDE.md
