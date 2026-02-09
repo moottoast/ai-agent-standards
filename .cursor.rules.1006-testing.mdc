@@ -9,16 +9,21 @@ globs: ["spec/**/*.rb"]
 
 - When creating or modifying specs.
 - Defer to AGENTS.md for the non-negotiables (tests first, RSpec only, FactoryBot only, no fixtures).
+- When fixing failing specs, confirm expected behavior against application docs and/or product requirements before changing code.
 
 ## Requirements
 
 - Write/adjust the spec first (Red), then implement (Green), then refactor (Refactor).
+- For failing-test fixes, first decide whether the current spec matches documented product intent:
+  - If no, refactor the spec to align with docs/requirements.
+  - If yes, fix the implementation (or minimal test setup issue) to satisfy the spec.
 - Use FactoryBot factories and traits; avoid fixtures entirely.
 - Prefer behavior-focused specs; avoid testing Rails internals.
 - Keep setup readable; use `let`/`before` sparingly and intentionally.
 - Mock/stub at boundaries only (external services, time, randomness).
 - For Turbo confirmation flows or PATCH/DELETE links, use system specs with `:js` and the repo’s existing Turbo confirm helpers.
-- Include a verification section in responses: `bundle exec rspec` and, when relevant, `bundle exec bundler-audit check --update` + `bundle exec brakeman`.
+- For failing-test fix requests, verify with file-scoped runs only (for example `bundle exec rspec spec/models/user_spec.rb`); do not run the full suite.
+- Include a verification section in responses: file-scoped `bundle exec rspec path/to/spec_file.rb`, and when relevant, `bundle exec bundler-audit check --update` + `bundle exec brakeman`.
 
 ## Examples
 
@@ -55,3 +60,5 @@ end
 - Introducing or expanding Minitest usage for new tests.
 - Using fixtures or referencing `users(:one)` / YAML fixture data.
 - Large, brittle specs that over-mock internal behavior.
+- Jumping straight to implementation fixes for failing specs without checking docs/requirements first.
+- Running the full suite when the task is specifically fixing known failing specs.

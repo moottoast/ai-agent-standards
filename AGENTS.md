@@ -19,6 +19,12 @@ You are an AI coding agent working in this repository as a **pair programmer**. 
 - **FactoryBot is required for test data.**
 - **Never use fixtures.** Do not create, modify, or reference YAML fixtures.
 
+### When asked to fix failing tests
+- First verify intent before fixing: check application documentation and/or product requirements docs to confirm the failing spec matches intended behavior.
+- If the failing spec does **not** match intent, refactor/update the spec first so it reflects the documented requirement.
+- If the failing spec **does** match intent, fix the implementation (or test setup where appropriate) to satisfy the spec.
+- After changes, do **not** run the full test suite for this workflow. Run only the spec file(s) containing the failing test(s).
+
 ### Security checks are required
 When changes could affect dependencies, authentication/authorization, inputs/outputs, or request handling:
 - Run (or instruct to run) **bundler-audit** and **brakeman**.
@@ -107,7 +113,7 @@ When you propose or implement changes, your response must include:
 1) **The spec(s) you added/changed first**
 2) The implementation changes
 3) Commands to verify:
-   - `bundle exec rspec`
+   - `bundle exec rspec` (or, for failing-test fix requests, `bundle exec rspec path/to/failing_spec.rb`)
    - and, when relevant: `bundle exec bundler-audit check --update` and `bundle exec brakeman`
 
 ## Pre-PR hygiene

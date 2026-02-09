@@ -16,4 +16,5 @@ globs: ["**/*.rb", "app/**/*.erb"]
 - Keep changes incremental and consistent with nearby code.
 - Place complex workflow logic in the repo’s established pattern (often service objects / POROs) rather than bloating controllers/models.
 - Use ActiveJob for background jobs; follow existing job argument conventions in this repo (IDs vs GlobalID) rather than changing styles.
+- For failing-test fix requests, validate failing-spec intent against application docs/product requirements first, then run only the impacted spec file(s) instead of the full suite.
 - If you touch request/params/auth flows or dependencies, include verification steps for bundler-audit and brakeman (per AGENTS.md).
