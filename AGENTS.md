@@ -134,3 +134,25 @@ Before creating or requesting a pull request:
 - Run the repo lint + security script: `bin/lint`
 - Ensure it passes (it will auto-fix what it can)
 - Call out any failures and required follow-ups
+
+## PR description quality
+When asked to write or draft a pull request description:
+- Base the description on the **full diff from merge-base to `HEAD` against the target branch** (usually `main`), not on commit messages and not on a single commit.
+- Explain **why** the change exists (problem, motivation, or user impact), not just what changed.
+- Use the repository PR template at `.github/pull_request_template.md` when it exists.
+- If no PR template exists, use this structure exactly:
+  - **Summary**
+  - **Motivation / Why**
+  - **What changed** (grouped by area with bullet points)
+  - **Testing** (commands run and results; explicitly state if tests were not run)
+  - **Risk / Rollout / Backward-compatibility notes**
+  - **Notes for reviewers**
+- Explicitly call out in the PR description whenever present in the diff:
+  - Migrations (schema/data/backfill implications)
+  - Configuration changes (environment variables, credentials, initializers, infra toggles)
+  - Feature flags (default state, rollout plan, cleanup follow-up)
+  - Backward-compatibility concerns (API contracts, data format changes, behavior changes for existing clients)
+- If required information is missing (especially testing), say so explicitly and suggest exact commands to gather it (for example: `bundle exec rspec`, `bin/lint`, `bundle exec brakeman`, `bundle exec bundler-audit check --update`).
+- When identifying the diff scope, prefer commands like:
+  - `git merge-base <target-branch> HEAD`
+  - `git diff <merge-base>...HEAD`
